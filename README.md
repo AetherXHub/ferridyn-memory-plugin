@@ -84,7 +84,7 @@ The setup command verifies all prerequisites, builds hook scripts, starts the se
 
 | Variable | Required | Purpose |
 |----------|----------|---------|
-| `ANTHROPIC_API_KEY` | Yes | Claude Haiku for schema inference, NL parsing, query resolution |
+| `ANTHROPIC_API_KEY` | Yes | Claude Haiku for NL parsing and query resolution |
 | `FERRIDYN_MEMORY_CLI` | No | Override `fmemory` binary path (default: looks up in PATH) |
 | `FERRIDYN_MEMORY_SOCKET` | No | Override server socket path (default: `~/.local/share/ferridyn/server.sock`) |
 

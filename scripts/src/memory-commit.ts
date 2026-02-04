@@ -27,9 +27,9 @@ Return a JSON array of memory entries to store:
 ]
 
 Guidelines:
-- Use existing categories when appropriate, or let the system infer one.
+- ONLY use categories from the list above. Do NOT invent new category names.
 - "input" should be a natural language sentence describing the memory.
-- The system will automatically extract structured attributes and generate a key.
+- The fmemory CLI will parse the input into structured attributes matching the category schema and generate a key.
 - Focus on: architecture decisions, user preferences, bug fixes, learned patterns, project-specific knowledge.
 - Skip: trivial exchanges, greetings, status updates.
 - Return an empty array [] if nothing worth remembering.

@@ -54,7 +54,7 @@ For each issue, suggest the appropriate action:
 
 | Issue | Fix |
 |-------|-----|
-| No schema defined | Store data with `fmemory remember` (auto-infers) or `fmemory define --attributes [...]` |
+| No schema defined | Run `fmemory init` to create predefined schemas, or `fmemory define --attributes [...]` for custom categories |
 | No indexes | `fmemory define --category <cat> --auto-index` |
 | Empty category | Either populate it or ignore (harmless) |
 | Large category | Review entries with `/ferridyn-memory:browse`, prune stale ones with `forget` |

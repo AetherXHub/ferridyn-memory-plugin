@@ -34,7 +34,7 @@ Extract from the user's statement:
 fmemory discover
 ```
 
-See what categories already exist. Prefer reusing existing categories over creating new ones.
+See what categories exist. Only use predefined categories (project, decisions, contacts, preferences, bugs, tools, notes) or categories created via `fmemory define`.
 
 ### Step 3: Store the Memory
 
@@ -44,7 +44,7 @@ Use NL-first syntax — let fmemory extract structure from your description:
 fmemory remember --category contacts "Toby is a backend engineer, email toby@example.com"
 ```
 
-If the category is new, fmemory will auto-infer a schema with typed attributes and indexes from your first write.
+The predefined categories have typed schemas with attributes and indexes. Use `fmemory define` for custom categories beyond the 7 built-in ones.
 
 ### Step 4: Confirm
 
@@ -52,7 +52,7 @@ Tell the user what you stored and how you categorized it. Keep it brief:
 
 > Stored in **contacts**: Toby — backend engineer, toby@example.com
 
-## Category Inference Guide
+## Category Selection Guide
 
 | User Says... | Category | Store Command |
 |--------------|----------|---------------|

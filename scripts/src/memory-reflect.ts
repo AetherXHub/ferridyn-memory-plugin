@@ -20,6 +20,8 @@ Do NOT extract:
 
 Existing memory categories: {categories}
 
+ONLY use categories from the list above. Do NOT invent new category names.
+
 Return a JSON array of memory entries to store:
 [
   {

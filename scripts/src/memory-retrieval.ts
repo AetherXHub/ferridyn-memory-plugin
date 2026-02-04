@@ -32,7 +32,7 @@ You have access to persistent memory via the fmemory CLI. Use it proactively:
 - You fix a tricky bug (store the pattern and fix)
 - You discover a convention, gotcha, or non-obvious behavior
 - Syntax: \`fmemory remember --category <cat> "Natural language description"\`
-- Or let the system infer the category: \`fmemory remember "Natural language description"\`
+- Or let the system select from predefined categories: \`fmemory remember "Natural language description"\`
 - Or use \`fmemory -p "Natural language"\` for intent-classified prompt mode
 
 **RETRIEVE** — Run \`fmemory recall --query "..."\` when:

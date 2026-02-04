@@ -2,7 +2,7 @@
 
 ## Project
 
-FerridynDB Memory Plugin — Claude Code plugin providing agentic memory via 3 hooks, 13 skills, and 13 commands. The plugin invokes the `fmemory` CLI (installed separately via `cargo install --git https://github.com/AetherXHub/ferridyn-memory`) as a subprocess to store/retrieve memories from a local FerridynDB database.
+FerridynDB Memory Plugin — Claude Code plugin providing agentic memory via 3 hooks, 13 skills, and 13 commands. The plugin invokes the `fmemory` CLI (installed separately via `cargo install --git https://github.com/AetherXHub/ferridyn-memory`) as a subprocess to store/retrieve memories from a local FerridynDB database. fmemory ships with 7 predefined categories (project, decisions, contacts, preferences, bugs, tools, notes) with typed attributes and secondary indexes.
 
 ## Build Commands
 
@@ -65,7 +65,7 @@ Claude Code (injects context into prompt)
 
 ## Environment Variables
 
-- **ANTHROPIC_API_KEY** (required) — Claude Haiku for schema inference, NL parsing, and query resolution (used by `fmemory`, not the plugin)
+- **ANTHROPIC_API_KEY** (required) — Claude Haiku for NL parsing and query resolution (used by `fmemory`, not the plugin)
 - **FERRIDYN_MEMORY_CLI** (optional) — Override `fmemory` binary path; default: looks up in PATH
 - **FERRIDYN_MEMORY_SOCKET** (optional) — Override server socket path; default: `~/.local/share/ferridyn/server.sock`
 
@@ -106,7 +106,7 @@ Claude Code (injects context into prompt)
 - **config.ts** — Shared utilities
   - `runFMemory()` — Wrapper around execFile to invoke `fmemory --json`
   - `parseJsonOutput()` — Safe JSON parsing with error handling
-  - `callHaiku()` — LLM calls for schema inference and NL parsing (mirrors ferridyn-memory Rust API)
+  - `callHaiku()` — LLM calls for category selection, memory extraction, and NL parsing
 
 - **memory-retrieval.ts** — UserPromptSubmit hook
   - Discovers category names from fmemory
@@ -166,7 +166,7 @@ All tests require `fmemory` in PATH and `ferridyn-server` running.
 
 **"ANTHROPIC_API_KEY is required"**
 - Set the environment variable: `export ANTHROPIC_API_KEY="sk-ant-..."`
-- Some hooks (schema inference, NL parsing) require Claude Haiku
+- Some hooks (NL parsing, memory extraction) require Claude Haiku
 
 ## Resources
 

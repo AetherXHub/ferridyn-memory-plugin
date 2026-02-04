@@ -40,14 +40,18 @@ If memories exist, ask the user:
 
 If "Start fresh": recall all project memories and forget each one.
 
-### Step 1: Define Schema (if new)
+### Step 1: Verify Schema Exists
 
-If the `project` category doesn't exist yet, define its schema:
+The `project` category is predefined with area, topic, details, and content attributes. It is created automatically on first use or via `fmemory init`. Verify it exists:
 
 ```bash
-fmemory define --category project --description "Project structure, conventions, architecture, and build knowledge" \
-  --attributes '[{"name":"area","type":"STRING","required":true},{"name":"topic","type":"STRING","required":true},{"name":"details","type":"STRING","required":true}]' \
-  --auto-index
+fmemory schema --category project
+```
+
+If the schema doesn't exist yet, initialize predefined categories:
+
+```bash
+fmemory init
 ```
 
 ### Step 2: Explore and Store

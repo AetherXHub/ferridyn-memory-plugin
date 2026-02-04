@@ -110,7 +110,7 @@ If `node` is missing, warn the user:
 
 If `ANTHROPIC_API_KEY` is missing, warn the user:
 
-> **ANTHROPIC_API_KEY is required.** fmemory uses Claude Haiku for schema inference and natural language recall.
+> **ANTHROPIC_API_KEY is required.** fmemory uses Claude Haiku for natural language parsing and query resolution.
 > Set it in your environment:
 > ```
 > export ANTHROPIC_API_KEY="sk-ant-..."
@@ -209,17 +209,18 @@ If the server failed to start, stop and report. Save progress:
 save_setup_progress 3
 ```
 
-## Step 4: Verify Round-Trip
+## Step 4: Initialize Predefined Categories and Verify
 
-Test store, recall, and cleanup:
+Initialize the 7 predefined category schemas, then test a round-trip:
 
 ```bash
+fmemory init
 fmemory remember --category _setup-test "Setup verification test"
 fmemory recall --category _setup-test
 fmemory forget --category _setup-test --key setup-verification-test
 ```
 
-All three commands must succeed. If any fails, stop and report. Save progress:
+All commands must succeed. If any fails, stop and report. Save progress:
 ```bash
 save_setup_progress 4
 ```
@@ -272,7 +273,7 @@ For more info: https://github.com/AetherXHub/ferridyn-memory-plugin
 
 If `ANTHROPIC_API_KEY` is set in the environment, add:
 
-> **Structured memory is active.** fmemory uses Claude Haiku for automatic schema inference (typed attributes and secondary indexes), natural language parsing, and query resolution.
+> **Structured memory is active.** fmemory uses 7 predefined category schemas (typed attributes and secondary indexes) with Claude Haiku for natural language parsing and query resolution.
 
 ## Help Text
 
@@ -292,13 +293,13 @@ WHAT IT DOES:
   4. Creates data directory (~/.local/share/ferridyn)
   5. Starts the FerridynDB server daemon (required — fmemory is server-only)
   6. Verifies round-trip memory storage
-  7. Native partition schemas and secondary indexes are auto-created on first writes
+  7. 7 predefined category schemas are created automatically on first use (or via `fmemory init`)
 
 PREREQUISITES:
   - fmemory CLI: cargo install --git https://github.com/AetherXHub/ferridyn-memory
   - ferridyn-server: cargo install ferridyn-server --git https://github.com/AetherXHub/ferridyndb
   - Node.js 20+ (for hook scripts)
-  - ANTHROPIC_API_KEY environment variable (for schema inference and NL recall)
+  - ANTHROPIC_API_KEY environment variable (for NL parsing and query resolution)
 
 AFTER SETUP:
   Restart Claude Code for hooks to activate.

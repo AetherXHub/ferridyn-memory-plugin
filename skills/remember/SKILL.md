@@ -45,34 +45,29 @@ Or provide both category and key for full control:
 fmemory remember --category contacts --key toby "backend engineer at Example Corp"
 ```
 
-## Categories
+## Predefined Categories
 
-Categories are partition keys — broad semantic groupings:
-- `project` — project structure, conventions, architecture
+fmemory ships with 7 built-in categories, created automatically on first use or via `fmemory init`:
+
+- `project` — codebase knowledge, architecture, conventions, gotchas
+- `decisions` — architectural and design decisions with rationale
 - `contacts` — people, roles, contact info
-- `decisions` — architecture and design decisions
-- `bugs` — bug patterns, fixes, workarounds
-- `preferences` — user workflow preferences
-- `tools` — tool configs, environment details
+- `preferences` — user preferences, workflow patterns, directives
+- `bugs` — bug patterns, root causes, fixes, workarounds
+- `tools` — endpoints, configs, infrastructure, CI/CD, environments
+- `notes` — general-purpose catch-all for anything that doesn't fit elsewhere
+
+Custom categories can be added with `fmemory define`.
 
 ## Structured Data
 
-Items have typed attributes (name, email, role, etc.), not flat content strings. Keys are simple identifiers (`toby`), not hierarchical formats.
+Items have typed attributes (name, email, role, etc.), not flat content strings. Keys are simple identifiers (`toby`), not hierarchical formats. Every item gets a `created_at` timestamp (ISO 8601, UTC) injected automatically.
 
 **Before (old):** `{ "category": "people", "key": "toby#email", "content": "toby@example.com" }`
 
-**Now:** `{ "category": "contacts", "key": "toby", "name": "Toby", "email": "toby@example.com", "role": "backend engineer" }`
+**Now:** `{ "category": "contacts", "key": "toby", "name": "Toby", "email": "toby@example.com", "role": "backend engineer", "created_at": "2025-01-15T10:30:00Z" }`
 
-## Automatic Schema Inference
-
-On first write to a **new category**, fmemory uses Claude Haiku to:
-1. Infer typed attributes from the data (e.g., `name: STRING`, `email: STRING`)
-2. Suggest secondary indexes for fast attribute-based lookups
-3. Create a native partition schema for the category
-
-Subsequent writes to the same category are parsed against the existing schema.
-
-If you need a specific schema, use `fmemory define` first to explicitly set attributes and indexes.
+Each predefined category has typed attributes and secondary indexes for fast lookups. When `--category` is omitted, fmemory selects the best matching category from the predefined list automatically.
 
 ## Tips
 
